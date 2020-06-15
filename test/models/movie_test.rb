@@ -6,4 +6,9 @@ class MovieTest < ActiveSupport::TestCase
     assert_equal movie.title, "Parasite"
     assert_equal movie.director, "Bong Joon-ho"
   end
+
+  test "movie is not valid without a title" do
+    movie = Movie.new(title: "")
+    assert_equal false, movie.valid?
+  end
 end
