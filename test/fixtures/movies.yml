@@ -3,7 +3,13 @@
 one:
   title: MyString
   director: MyString
+  plot_keywords: MyString
+  year: MyString
+  facebook_likes: 1
 
 two:
   title: MyString
   director: MyString
+  plot_keywords: MyString
+  year: MyString
+  facebook_likes: 1

@@ -11,4 +11,11 @@ class MovieTest < ActiveSupport::TestCase
     movie = Movie.new(title: "")
     assert_equal false, movie.valid?
   end
+
+  test "validate the release year of movie 'Not Cool'" do
+    movie = Movie.new(title: "Not Cool", year: 2014)
+    movie.save
+    year = Movie.releaseYear("Not Cool")
+    assert_equal "2014", year[0]
+  end
 end
