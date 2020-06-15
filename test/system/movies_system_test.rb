@@ -6,5 +6,12 @@ class MoviesSystemTest < ApplicationSystemTestCase
         assert_text "Parasite"
         assert_text "Bong Joon-Ho"
     end
+
+    test "visiting the show page for another movie" do
+        visit '/movies/2'
+    
+        assert_text "Titanic"
+        assert_text "James Cameron"
+      end
 end
 
