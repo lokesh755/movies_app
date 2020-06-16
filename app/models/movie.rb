@@ -17,4 +17,8 @@ class Movie < ApplicationRecord
     def self.movieCountWithMinFacebookLikes(number)
         self.where("facebook_likes > ?", number).count
     end
+
+    def self.bestFoulPlayMovieByDirector(directorName)
+        self.where('plot_keywords like \'%Foul%\' ').joins(:director).where(directors: {name: directorName}).order('facebook_likes DESC').limit(1).pluck(:title)[0]
+    end
 end
