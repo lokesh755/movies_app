@@ -1,0 +1,11 @@
+<h3>New movie</h3>
+
+<%= form_for :movie, url: { action: "create" } do |f| %>
+<table>
+<tr>
+  <td>Title: </td> <td><%= f.text_field :title %></td>
+</tr>
+  <td>Director: </td><td> <%= f.text_field :director %></td>
+</table>
+  <%= f.submit %>
+<% end %>

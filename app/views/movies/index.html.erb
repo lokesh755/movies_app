@@ -1,0 +1,14 @@
+<h1>Movie index</h1>
+<a href="/movies/new"> Add new movie</a>
+<br>
+<table border="1">
+<% movies.each do |movie| %>
+<tr><td height="30">
+    <a href='/movies/<%=movie.id%>'> 
+   
+            <%= movie.title %> 
+  
+    </a>
+</td></tr>
+<% end %>
+</table>
