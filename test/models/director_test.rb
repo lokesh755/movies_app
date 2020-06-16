@@ -6,5 +6,6 @@ class DirectorTest < ActiveSupport::TestCase
 
     assert_equal "Bong Joon-ho", director.name
     assert_equal 50, director.age
+    assert_equal 0, director.movies.count
   end
 end

@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
     validates :title, presence: true
-    
+    belongs_to :director
+
     def self.movieTitles
         self.pluck(:title)
     end
