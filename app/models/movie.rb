@@ -10,15 +10,22 @@ class Movie < ApplicationRecord
         self.order("facebook_likes DESC")
     end
 
-    def self.release_year(title)
-        self.where("title = ?", title).pluck(:year)
-    end
-
     def self.movie_count_with_min_facebook_likes(number)
         self.where("facebook_likes > ?", number).count
     end
 
-    def self.best_foul_play_movie_by_director(directorName)
-        self.where('plot_keywords like \'%Foul%\' ').joins(:director).where(directors: {name: directorName}).order('facebook_likes DESC').limit(1).pluck(:title)[0]
+    scope :release_year, -> (year) { where(year: "#{year}") }
+
+    scope :likes_desc, ->() { order(facebook_likes: :desc) }
+
+    scope :by_director, ->(director_name) { joins(:director).where(directors: { name: director_name }) }
+
+    scope :with_plot_keyword, ->(plot_keyword) { where("plot_keywords LIKE ?", "%#{plot_keyword}%") }
+
+    def self.most_liked_by_director_name_and_plot(director_name, plot_keyword)
+        likes_desc().
+        by_director(director_name).
+        with_plot_keyword(plot_keyword).
+        first
     end
 end
