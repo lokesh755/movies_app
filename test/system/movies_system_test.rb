@@ -2,8 +2,9 @@ require "application_system_test_case"
 
 class MoviesSystemTest < ApplicationSystemTestCase
   test "visiting the show page" do
-    attributes = { title: "Parasite", director: "Bong Joon-ho" }
-    movie = Movie.create(attributes)
+    director = create(:director, name: "Bong Joon-ho", age: 50)
+
+    movie = create(:movie, { title:"Parasite", director: director })
 
     # As a user,
     # When I visit /movies/1
@@ -16,8 +17,10 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "visiting the show page for another movie" do
-    attributes = { title: "Titanic", director: "James Cameron" }
-    movie = Movie.create(attributes)
+    
+    director = create(:director, name: "James Cameron", age: 50)
+
+    movie = create(:movie, { title:"Titanic", director: director })
 
     visit "/movies/#{movie.id}"
 
@@ -26,11 +29,14 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "visiting the index page" do
-    attributes = { title: "Titanic", director: "James Cameron" }
-    movie = Movie.create(attributes)
+    director = create(:director, name: "Bong Joon-ho", age: 50)
 
-    attributes = { title: "Parasite", director: "Bong Joon-ho" }
-    movie = Movie.create(attributes)
+    movie = create(:movie, { title:"Parasite", director: director })
+
+
+    director = create(:director, name: "James Cameron", age: 50)
+
+    movie = create(:movie, { title:"Titanic", director: director })
 
     visit "/movies/"
 
